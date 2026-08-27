@@ -476,7 +476,7 @@ Configure the PostgreSQL connection according to the database setup used by the 
 Never commit API keys or credentials to GitHub.
 
 4. Start the Streamlit application
-streamlit run app.py
+python -m streamlit run app.py
 
 The dashboard will open in the browser.
 
@@ -585,6 +585,9 @@ ACTION
 The key idea is:
 
 Don't stop after detecting a payment failure. Understand its cause, quantify its impact, identify the recovery opportunity, and recommend the next operational action.
+
+## 🧠 System Architecture
+![AI Payment Intelligence Architecture](assets/architecture.png)
 
 📁 Project Structure
 Razorpay_ai-buildathon/
