@@ -1,3 +1,4 @@
+```text
 # 💳 AI Payment Intelligence & Revenue Recovery
 
 > An AI-powered payment operations system that detects payment anomalies, investigates their root causes, estimates revenue at risk, and identifies actionable recovery opportunities.
