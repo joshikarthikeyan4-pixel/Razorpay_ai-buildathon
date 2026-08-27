@@ -37,7 +37,7 @@ This project is aligned with Razorpay's **AI Revenue Recovery** track.
 
 The system focuses on payment degradation:
 
-```text
+
 Payment failures
       ↓
 Detect abnormal behaviour
@@ -585,7 +585,27 @@ The key idea is:
 
 Don't stop after detecting a payment failure. Understand its cause, quantify its impact, identify the recovery opportunity, and recommend the next operational action.
 
-👥 Team
+📁 Project Structure
+Razorpay_ai-buildathon/
+│
+├── app.py
+├── requirements.txt
+├── README.md
+├── .gitignore
+│
+├── sql/
+│   └── razorpay_analytics.sql
+│
+└── src/
+    ├── __init__.py
+    ├── agent.py
+    ├── analytics.py
+    ├── anomaly.py
+    ├── db.py
+    ├── recovery.py
+    └── tools.py
+
+
 Made by -Karthikeyan Joshi
 
 Built for the Razorpay AI Buildathon 2026.
