@@ -3,6 +3,9 @@ import pandas as pd
 
 from src.anomaly import detect_anomalies
 from src.agent import ask_agent
+from src.recovery import get_recovery_action, estimate_recovery, build_recovery_opportunities
+
+
 from src.tools import (
     get_payment_health,
     get_daily_trend,
@@ -281,32 +284,65 @@ if not anomalies.empty:
 
     if not failure_df.empty:
 
-        col1, col2 = st.columns(2)
+        recovery_opportunities = build_recovery_opportunities(failure_df)
 
-        with col1:
+        st.markdown("### 💡 Recovery Opportunities")
 
-            st.dataframe(
-                failure_df,
-                use_container_width=True,
-                hide_index=True
-            )
+        total_recovery_opportunity = recovery_opportunities[
+            "estimated_recoverable_value"
+        ].sum()
 
-        with col2:
+        st.metric(
+            "Total Estimated Recovery Opportunity",
+            f"₹{total_recovery_opportunity:,.0f}"
+        )
+        st.markdown("#### Recovery Opportunity by Failure Reason")
 
-            chart_df = failure_df.set_index(
-                "failure_reason"
-            )[["failed_transactions"]]
+        recovery_display = recovery_opportunities[[
+                "failure_reason",
+                "failed_transactions",
+                "percentage_of_failures",
+                "failed_transaction_value",
+                "recovery_rate",
+                "estimated_recoverable_value",
+                "recommended_action"
+            ]].copy()
 
-            st.bar_chart(chart_df)
+        recovery_display["recovery_rate"] = (
+            recovery_display["recovery_rate"] * 100
+        ).round(0).astype(str) + "%"
 
-    else:
-
-        st.info(
-            "No failure reason data available."
+        recovery_display = recovery_display.rename(
+            columns={
+                "failure_reason": "Failure Reason",
+                "failed_transactions": "Failed Transactions",
+                "percentage_of_failures": "Percentage of Failures",
+                "failed_transaction_value": "Failed Value",
+                "recovery_rate": "Recovery Rate",
+                "estimated_recoverable_value": "Estimated Recovery",
+                "recommended_action": "Recommended Action",
+        
+            }
         )
 
-else:
+        st.dataframe(
+            recovery_display,
+            use_container_width=True,
+            hide_index=True
+        )
+        st.markdown("#### Estimated Recovery by Failure Reason")
 
-    st.info(
-        "No active anomalies to investigate."
-    )
+        recovery_chart_df = recovery_opportunities[
+            ["failure_reason", "estimated_recoverable_value"]
+        ].set_index("failure_reason")
+
+        st.bar_chart(
+            recovery_chart_df
+        )
+        
+
+    else:
+        st.info("No failure reason data available.")
+
+else:
+    st.info("No active anomalies to investigate.")

@@ -385,6 +385,30 @@ GROUP BY
     bank,
     payment_method;
 
+	SELECT column_name, data_type
+FROM information_schema.columns
+WHERE table_schema = 'public'
+  AND table_name = 'transactions'
+ORDER BY ordinal_position;
+
+SELECT
+    failure_reason,
+    COUNT(*) AS failed_transactions,
+    ROUND(SUM(amount), 2) AS failed_value
+FROM public.transactions
+WHERE status = 'FAILED'
+GROUP BY failure_reason
+ORDER BY failed_value DESC;
+
+SELECT
+    payment_method,
+    failure_reason,
+    COUNT(*) AS failed_transactions,
+    ROUND(SUM(amount), 2) AS failed_value
+FROM public.transactions
+WHERE status = 'FAILED'
+GROUP BY payment_method, failure_reason
+ORDER BY failed_value DESC;
 	
 
 	
