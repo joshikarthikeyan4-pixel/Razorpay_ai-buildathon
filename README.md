@@ -1,5 +1,5 @@
 ```text
-# 💳 AI Payment Intelligence & Revenue Recovery
+#  AI Payment Intelligence & Revenue Recovery
 
 > An AI-powered payment operations system that detects payment anomalies, investigates their root causes, estimates revenue at risk, and identifies actionable recovery opportunities.
 
@@ -7,7 +7,7 @@ Built for the **Razorpay AI Buildathon 2026**.
 
 ---
 
-## 🎯 Problem
+## Problem
 
 Payment failures are not simply a matter of counting unsuccessful transactions.
 
@@ -30,7 +30,7 @@ The goal of this project is to move from:
 
 ---
 
-## 🏆 Buildathon Track
+## Buildathon Track
 
 ### AI Revenue Recovery
 
@@ -55,7 +55,7 @@ Recommend bounded recovery actions
       ↓
 AI explains the investigation
 
-📈 Daily Payment Failure Trend
+ Daily Payment Failure Trend
 
 The application displays a daily failure-rate trend.
 
@@ -68,7 +68,7 @@ Changes in payment behaviour
 
 Instead of looking only at one aggregate number, operations teams can observe how payment reliability changes over time.
 
-🚨 Automated Anomaly Detection
+Automated Anomaly Detection
 
 One of the core components is automated anomaly detection.
 
@@ -94,7 +94,7 @@ This represents a significant degradation in payment performance.
 
 The system then classifies the incident based on its severity.
 
-🚨 Active Payment Incidents
+ Active Payment Incidents
 
 Detected anomalies are displayed as active payment incidents.
 
@@ -126,7 +126,7 @@ The AI does not simply generate an answer from its own knowledge.
 
 Instead, it can call application tools that retrieve information from the PostgreSQL database.
 
-🔧 AI Tool Calling
+AI Tool Calling
 
 The agent has access to tools for:
 
@@ -154,7 +154,7 @@ get_active_anomalies
 
 Retrieves currently active payment anomalies.
 
-🔄 AI Investigation Flow
+AI Investigation Flow
 User asks a question
         ↓
 Gemini receives the question
@@ -173,17 +173,17 @@ Natural-language investigation
 
 The AI is explicitly instructed to:
 
-Use tools when transaction data is required
-Never invent metrics
-Treat database results as the source of truth
-Explain reasoning
-Distinguish facts from recommendations
-Avoid claiming unsupported root causes
-State when evidence is insufficient
+1)-Use tools when transaction data is required.
+2)-Never invent metrics.
+3)-Treat database results as the source of truth.
+Explain reasoning.
+4)-Distinguish facts from recommendations.
+5)-Avoid claiming unsupported root causes.
+6)-State when evidence is insufficient.
 
 This makes the AI output more grounded in the actual payment data.
 
-💰 Revenue at Risk
+ Revenue at Risk
 
 Detecting an anomaly is only useful if its business impact can be understood.
 
@@ -288,7 +288,7 @@ across the analyzed failure categories.
 
 This allows the operations team to prioritize the largest recovery opportunities first.
 
-🧪 Example Investigation
+ Example Investigation
 
 For a BANK_X / UPI incident, the system can identify:
 
@@ -332,7 +332,7 @@ Revenue at risk is not the same as recoverable revenue.
 
 The system therefore presents recovery estimates as heuristic opportunities rather than guaranteed recovered revenue.
 
-🛠️ Why We Built It This Way
+🛠️ Why I Built It This Way
 Change 1 — Added anomaly detection
 
 A raw failure percentage is not enough.
@@ -369,7 +369,7 @@ Change 5 — Added recovery actions
 
 The project originally focused primarily on identifying and investigating failures.
 
-We extended it into a recovery-oriented system by mapping failure reasons to practical actions:
+I extended it into a recovery-oriented system by mapping failure reasons to practical actions:
 
 Retry
 Alternative Method
@@ -377,7 +377,7 @@ Manual Review
 Investigate
 Change 6 — Added recovery opportunity estimation
 
-We wanted to answer a more important business question:
+I wanted to answer a more important business question:
 
 "After finding the failures, where should the operations team focus first?"
 
@@ -398,7 +398,7 @@ The project required connecting the application to a PostgreSQL database and ens
 
 Simply counting failures was not enough.
 
-We needed to calculate:
+I needed to calculate:
 
 Failure rates
 Historical baselines
@@ -409,7 +409,7 @@ Revenue impact
 
 One of the major challenges was preventing the AI from making unsupported claims.
 
-We addressed this by giving Gemini database tools and explicitly instructing it to treat database results as the source of truth.
+I addressed this by giving Gemini database tools and explicitly instructing it to treat database results as the source of truth.
 
 4. Recovery estimation
 
@@ -437,7 +437,7 @@ The implementation was corrected and stale Python cache files were removed so th
 
 As more recovery information was added, the dashboard initially contained duplicated analysis tables and overlapping visualizations.
 
-We reorganized the recovery section so the final dashboard presents the recovery opportunity information more clearly.
+I reorganized the recovery section so the final dashboard presents the recovery opportunity information more clearly.
 
 🧰 Tech Stack
 Frontend / Dashboard
