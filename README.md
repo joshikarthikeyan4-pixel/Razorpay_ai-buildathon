@@ -22,7 +22,7 @@ For a payment operations team, a sudden increase in failures raises several impo
 - What action should the operations team take?
 - Which failures should be retried, redirected, or manually reviewed?
 
-Traditional dashboards can show transaction counts and failure percentages, but they often stop at **"what happened."**
+Traditional dashboards can show transaction counts and failure percentages, but they often stop at "what happened."
 
 The goal of this project is to move from:
 
